@@ -4,15 +4,15 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Welcome to cineapp</title>
+    <title>Detail movie</title>
 </head>
 <body>
 <div>
-    <h1>Movies</h1>
-    <ol>
-
-    </ol>
+    <h1>Película ${titleMovie}</h1>
+    <h2>Duración ${duration} min.</h2>
+    <h2>Precio de entrada ${price}</h2>
 </div>
 
+<h2></h2>
 </body>
 </html>
