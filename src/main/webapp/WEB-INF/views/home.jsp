@@ -1,16 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: lMarcoss
-  Date: 19/07/18
-  Time: 01:58
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html; charset=ISO-8859-1"
+         pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>Welcome</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Pagina Principal</title>
 </head>
 <body>
-<h1>Welcome</h1>
+<h1>Bienvenido a la pagina Principal</h1>
 </body>
 </html>
