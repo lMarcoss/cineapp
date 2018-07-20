@@ -75,11 +75,32 @@ public class HomeController {
             movie4.setGenre("Action");
             movie4.setDate(simpleDateFormat.parse("01-01-2019"));
 
+            Movie movie5 = new Movie();
+            movie5.setId(6);
+            movie5.setTitle("The beauty and the best");
+            movie5.setDuration(85);
+            movie5.setClasification("B");
+            movie5.setGenre("Action");
+            movie5.setPicture("bella.png");
+            movie5.setDate(simpleDateFormat.parse("05-05-2019"));
+
+            Movie movie6 = new Movie();
+            movie6.setId(7);
+            movie6.setTitle("Kong");
+            movie6.setDuration(85);
+            movie6.setClasification("B");
+            movie6.setGenre("Action");
+            movie6.setPicture("kong.png");
+            movie6.setDate(simpleDateFormat.parse("06-05-2019"));
+            movie6.setStatus("Inactive");
+
             listMovies.add(movie);
             listMovies.add(movie1);
             listMovies.add(movie2);
             listMovies.add(movie3);
             listMovies.add(movie4);
+            listMovies.add(movie5);
+            listMovies.add(movie6);
             return listMovies;
         } catch (ParseException e) {
             LOG.error(e.getMessage());

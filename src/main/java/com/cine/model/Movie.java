@@ -10,7 +10,7 @@ public class Movie {
     private String genre;
     private String picture = "cinema.png";
     private Date date;
-    private String status = "Activa";
+    private String status = "Active";
 
     public Movie() {
     }
