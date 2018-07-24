@@ -1,4 +1,4 @@
-package com.cine.model;
+package com.cine.movie.entity;
 
 import java.util.Date;
 
