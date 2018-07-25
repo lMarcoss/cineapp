@@ -9,10 +9,10 @@
 
 
     <context:component-scan base-package="com.cine"/><!--paquete para escanear los beans de spring mvc-->
-    <mvc:annotation-driven />
+    <mvc:annotation-driven/>
 
-    <mvc:annotation-driven />
-    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <mvc:annotation-driven/>
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
 
     <!--Mapeo de recursos estáticos-->
     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -23,5 +23,9 @@
         <property name="suffix">
             <value>.jsp</value>
         </property>
+    </bean>
+
+    <!-- Cofiguración para permitir carga de archivos desde formulario -->
+    <bean id="multipartResolever" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
     </bean>
 </beans>

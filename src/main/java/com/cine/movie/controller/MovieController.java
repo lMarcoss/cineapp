@@ -10,12 +10,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -42,7 +42,19 @@ public class MovieController {
     }
 
     @PostMapping("/save")
-    public String save(Movie movie, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String save(Movie movie, BindingResult bindingResult, RedirectAttributes redirectAttributes,
+                       @RequestParam("picture") MultipartFile multipartFile, HttpServletRequest httpServletRequest) {
+
+        if (!multipartFile.isEmpty()) {
+            try {
+                String nameFile;
+                nameFile = savePicture(multipartFile, httpServletRequest);
+                movie.setPicture(nameFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 LOG.error(error.toString());
@@ -54,6 +66,19 @@ public class MovieController {
             LOG.info(movie.toString());
             LOG.info("movies: " + _iMovieService.getAll().size());
             return "redirect:/movies/";
+        }
+    }
+
+    private String savePicture(MultipartFile multipartFile, HttpServletRequest httpServletRequest) throws Exception {
+        String nameOriginal = multipartFile.getOriginalFilename();
+        String pathSave = httpServletRequest.getServletContext().getRealPath("/resources/images/");
+        try {
+            File imageFile = new File(pathSave + nameOriginal);
+            multipartFile.transferTo(imageFile);
+            return nameOriginal;
+        } catch (Exception e) {
+            LOG.error(e.getMessage());
+            throw new Exception(e);
         }
     }
 

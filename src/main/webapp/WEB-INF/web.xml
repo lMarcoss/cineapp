@@ -14,6 +14,11 @@
             <param-value>/WEB-INF/spring/dispatcher-servlet.xml</param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
+
+        <!-- Cofiguración para permitir carga de archivos desde formulario -->
+        <multipart-config>
+            <location>/Users/lMarcoss/workspace-leo/cursos/filesTest</location>
+        </multipart-config>
     </servlet>
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
