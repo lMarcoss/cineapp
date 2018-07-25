@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <spring:url value="/resources" var="urlPublic"/>
-<c:set var="context" value="${fn:replace(urlPublic, 'resources', '')}"/>
+<c:set var="context" value="${fn:replace(urlPublic, '/resources', '')}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +30,7 @@
 
     <h3 class="blog-title"><span class="label label-success">Datos de la Noticia</span></h3>
 
-    <form action="${context}news/save" method="post">
+    <form action="${context}/news/save" method="post">
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">

@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <spring:url value="/resources" var="urlPublic"/>
-<c:set var="context" value="${fn:replace(urlPublic, 'resources', '')}"/>
+<c:set var="context" value="${fn:replace(urlPublic, '/resources', '')}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +33,18 @@
         <h3 class="blog-title"><span class="label label-success">Datos de la Pelicula</span></h3>
     </div>
 
-    <form action="${context}movies/save" method="post">
+    <spring:hasBindErrors name="movie">
+        <div class="alert alert-danger">
+            Please! fix de following errors
+            <ul>
+                <c:forEach items="${errors.allErrors}" var="error">
+                    <li><spring:message message="${error}"/></li>
+                </c:forEach>
+            </ul>
+        </div>
+    </spring:hasBindErrors>
+
+    <form action="${context}/movies/save" method="post">
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">

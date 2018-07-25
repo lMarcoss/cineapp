@@ -27,6 +27,11 @@ public class MovieServiceImpl implements IMovieService {
     }
 
     @Override
+    public void save(Movie movie) {
+        listMovies.add(movie);
+    }
+
+    @Override
     public Movie getById(int id) {
         for (Movie movie : listMovies) {
             if (movie.getId() == id) {

@@ -5,7 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <spring:url value="/resources" var="urlPublic"/>
-<c:set var="context" value="${fn:replace(urlPublic, 'resources', '')}"/>
+<c:set var="context" value="${fn:replace(urlPublic, '/resources', '')}"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>

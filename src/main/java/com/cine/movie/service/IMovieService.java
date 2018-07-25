@@ -8,5 +8,7 @@ public interface IMovieService {
 
     List<Movie> getAll();
 
+    void save(Movie movie);
+
     Movie getById(int id);
 }
