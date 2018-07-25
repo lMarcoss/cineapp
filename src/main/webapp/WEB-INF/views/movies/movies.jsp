@@ -29,6 +29,9 @@
 <div class="container theme-showcase" role="main">
 
     <h3>Movies</h3>
+    <c:if test="${message != null}">
+        <div class="alert alert-success" role="alert">${message}</div>
+    </c:if>
 
     <a href="${context}/movies/create" class="btn btn-success" role="button" title="New Movie">New movie</a><br><br>
 

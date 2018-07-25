@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -41,16 +42,19 @@ public class MovieController {
     }
 
     @PostMapping("/save")
-    public String save(Movie movie, BindingResult bindingResult) {
+    public String save(Movie movie, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             for (ObjectError error : bindingResult.getAllErrors()) {
                 LOG.error(error.toString());
             }
+            return "movies/form";
+        } else {
+            _iMovieService.save(movie);
+            redirectAttributes.addFlashAttribute("message", "Movie added successful");
+            LOG.info(movie.toString());
+            LOG.info("movies: " + _iMovieService.getAll().size());
+            return "redirect:/movies/";
         }
-        _iMovieService.save(movie);
-        LOG.info(movie.toString());
-        LOG.info("movies: " + _iMovieService.getAll().size());
-        return "movies/form";
     }
 
     /**
