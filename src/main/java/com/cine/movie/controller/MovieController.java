@@ -2,6 +2,7 @@ package com.cine.movie.controller;
 
 import com.cine.movie.entity.Movie;
 import com.cine.movie.service.IMovieService;
+import com.cine.util.Util;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -48,9 +49,10 @@ public class MovieController {
         if (!multipartFile.isEmpty()) {
             try {
                 String nameFile;
-                nameFile = savePicture(multipartFile, httpServletRequest);
+                nameFile = Util.savePicture(multipartFile, httpServletRequest);
                 movie.setPicture(nameFile);
             } catch (Exception e) {
+                LOG.error(e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -66,19 +68,6 @@ public class MovieController {
             LOG.info(movie.toString());
             LOG.info("movies: " + _iMovieService.getAll().size());
             return "redirect:/movies/";
-        }
-    }
-
-    private String savePicture(MultipartFile multipartFile, HttpServletRequest httpServletRequest) throws Exception {
-        String nameOriginal = multipartFile.getOriginalFilename();
-        String pathSave = httpServletRequest.getServletContext().getRealPath("/resources/images/");
-        try {
-            File imageFile = new File(pathSave + nameOriginal);
-            multipartFile.transferTo(imageFile);
-            return nameOriginal;
-        } catch (Exception e) {
-            LOG.error(e.getMessage());
-            throw new Exception(e);
         }
     }
 
