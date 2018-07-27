@@ -1,5 +1,6 @@
 package com.cine.home;
 
+import com.cine.banner.service.IBannerService;
 import com.cine.movie.entity.Movie;
 import com.cine.movie.service.IMovieService;
 import com.cine.util.Util;
@@ -22,6 +23,9 @@ public class HomeController {
     @Autowired
     private IMovieService _iMovieService;
 
+    @Autowired
+    private IBannerService _iBannerService;
+
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String welcome() {
         return "home";
@@ -39,6 +43,7 @@ public class HomeController {
         model.addAttribute("fechaActual", date == null ? simpleDateFormat.format(new Date()) : date);
         model.addAttribute("listMovies", listMovies);
         model.addAttribute("listDates", listDates);
+        model.addAttribute("listBanners", _iBannerService.getAll());
     }
 
 

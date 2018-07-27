@@ -37,17 +37,39 @@
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
         <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <c:forEach items="${listBanners}" var="banner">
+                <c:choose>
+                    <c:when test="${banner.id eq 1}">
+                        <li data-target="#myCarousel" data-slide-to="${banner.id}" class="active"></li>
+                    </c:when>
+                    <c:otherwise>
+                        <li data-target="#myCarousel" data-slide-to="${banner.id}"></li>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+            <%--<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
             <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>--%>
         </ol>
         <!-- Image Size 1140 x 250 -->
         <div class="carousel-inner" role="listbox">
-            <div class="item active">
-                <img src="${urlPublic}/images/slide1.jpg" alt="Slide" title="Some text">
-            </div>
-            <div class="item">
+            <c:forEach items="${listBanners}" var="banner">
+                <c:choose>
+                    <c:when test="${banner.id eq 1}">
+                        <div class="item active">
+                            <img src="${urlPublic}/images/${banner.picture}" alt="Slide" title="${banner.title}" height="1140" width="250">
+                        </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div class="item">
+                            <img src="${urlPublic}/images/${banner.picture}" alt="Slide" title="${banner.title}" height="1140" width="250">
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+            <%--<div class="item">
                 <img src="${urlPublic}/images/slide2.jpg" alt="Slide" title="Some text">
             </div>
             <div class="item">
@@ -55,7 +77,7 @@
             </div>
             <div class="item">
                 <img src="${urlPublic}/images/slide4.jpg" alt="Slide" title="Some text">
-            </div>
+            </div>--%>
         </div>
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -111,8 +133,9 @@
                         <span class="label label-default">${movie.genre}</span>
                     </h4>
                     <p>
-                        <%--<a class="btn btn-sm btn-primary" href="detail/${movie.id}/${fechaActual}" role="button">Consulta Horarios &raquo;</a>--%>
-                        <a class="btn btn-sm btn-primary" href="detail?id=${movie.id}&fechaBusqueda=${fechaActual}" role="button">Consulta Horarios &raquo;</a>
+                            <%--<a class="btn btn-sm btn-primary" href="detail/${movie.id}/${fechaActual}" role="button">Consulta Horarios &raquo;</a>--%>
+                        <a class="btn btn-sm btn-primary" href="detail?id=${movie.id}&fechaBusqueda=${fechaActual}"
+                           role="button">Consulta Horarios &raquo;</a>
                     </p>
                 </div>
             </c:forEach>
