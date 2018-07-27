@@ -11,4 +11,6 @@ public interface IMovieService {
     void save(Movie movie);
 
     Movie getById(int id);
+
+    List<String> getGenres();
 }

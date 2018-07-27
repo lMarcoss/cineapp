@@ -1,4 +1,4 @@
-package com.cine.controller;
+package com.cine.home;
 
 import com.cine.movie.entity.Movie;
 import com.cine.movie.service.IMovieService;
@@ -9,10 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 @Controller

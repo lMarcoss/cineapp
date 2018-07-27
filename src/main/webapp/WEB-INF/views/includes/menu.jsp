@@ -19,6 +19,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a href="${context}/movies/">Movies</a></li>
+                <li><a href="${context}/banners/">Banners</a></li>
                 <li><a href="#">Acerca</a></li>
                 <li><a href="#">Login</a></li>
             </ul>

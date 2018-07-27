@@ -38,29 +38,22 @@ public class MovieController {
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(@ModelAttribute Movie movie, Model model) {
+        model.addAttribute("listGenres", _iMovieService.getGenres());
         return "movies/form";
     }
 
     @PostMapping("/save")
-    public String save(Movie movie, BindingResult bindingResult, RedirectAttributes redirectAttributes,
+    public String save(@ModelAttribute Movie movie, BindingResult bindingResult, RedirectAttributes redirectAttributes,
                        @RequestParam("picture") MultipartFile multipartFile, HttpServletRequest httpServletRequest) {
 
-        if (!multipartFile.isEmpty()) {
-            try {
-                String nameFile;
-                nameFile = Util.savePicture(multipartFile, httpServletRequest);
-                movie.setPicture(nameFile);
-            } catch (Exception e) {
-                LOG.error(e.getMessage());
-                e.printStackTrace();
-            }
+        String fileName = Util.validateAndSavePicture(multipartFile, httpServletRequest);
+        if (fileName != null) {
+            movie.setPicture(fileName);
         }
 
         if (bindingResult.hasErrors()) {
-            for (ObjectError error : bindingResult.getAllErrors()) {
-                LOG.error(error.toString());
-            }
+            Util.printError(bindingResult.getAllErrors());
             return "movies/form";
         } else {
             _iMovieService.save(movie);

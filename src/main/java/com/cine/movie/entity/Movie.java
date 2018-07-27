@@ -12,6 +12,8 @@ public class Movie {
     private Date date;
     private String status = "Active";
 
+    private DetailMovie detailMovie;
+
     public Movie() {
     }
 
@@ -79,6 +81,14 @@ public class Movie {
         this.status = status;
     }
 
+    public DetailMovie getDetailMovie() {
+        return detailMovie;
+    }
+
+    public void setDetailMovie(DetailMovie detailMovie) {
+        this.detailMovie = detailMovie;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -90,6 +100,7 @@ public class Movie {
                 ", picture='" + picture + '\'' +
                 ", date=" + date +
                 ", status='" + status + '\'' +
+                ", detailMovie=" + detailMovie +
                 '}';
     }
 }

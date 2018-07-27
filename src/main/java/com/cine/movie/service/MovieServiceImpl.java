@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -39,6 +40,21 @@ public class MovieServiceImpl implements IMovieService {
             }
         }
         return null;
+    }
+
+    @Override
+    public List<String> getGenres() {
+        List<String> listGenres = new ArrayList<>();
+        listGenres.add("Action");
+        listGenres.add("Aventure");
+        listGenres.add("Classical");
+        listGenres.add("Romantic");
+        listGenres.add("Drama");
+        listGenres.add("Terror");
+        listGenres.add("Childish");
+        listGenres.add("Action and aventure");
+
+        return listGenres;
     }
 
     private List<Movie> getMovies() {
