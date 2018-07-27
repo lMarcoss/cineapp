@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
+<%@ page contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -20,10 +19,20 @@
     <link href="${urlPublic}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
+    <script>
+        function validateInputOff() {
+            var inputFields = document.getElementsByTagName("input");
+            for (var i = 0; i < inputFields.length; i++) {
+                var field = inputFields[i];
+                if (field.type === "text") {
+                    field.autocomplete = "off";
+                }
+            }
+        }
+    </script>
 </head>
 
-<body>
+<body onload="validateInputOff()">
 
 <!-- Fixed navbar -->
 <jsp:include page="../includes/menu.jsp"/>
@@ -49,7 +58,8 @@
         <div class="row">
             <div class="col-sm-3">
                 <div class="form-group">
-                    <img class="img-rounded" src="${urlPublic}/images/${movie.picture}" title="Picture" alt="Generic placeholder image"
+                    <img class="img-rounded" src="${urlPublic}/images/${movie.picture}" title="Picture"
+                         alt="Generic placeholder image"
                          width="150"
                          height="200">
                 </div>
@@ -110,7 +120,8 @@
             <div class="col-sm-3">
                 <div class="form-group">
                     <label for="date">Date</label>
-                    <form:input type="text" class="form-control" path="date" id="date" required="required"/>
+                    <form:input type="text" class="form-control" path="date" id="date" required="required"
+                                autocomplete="false"/>
                 </div>
             </div>
 

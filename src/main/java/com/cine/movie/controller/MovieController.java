@@ -45,7 +45,7 @@ public class MovieController {
 
     @PostMapping("/save")
     public String save(@ModelAttribute Movie movie, BindingResult bindingResult, RedirectAttributes redirectAttributes,
-                       @RequestParam("picture") MultipartFile multipartFile, HttpServletRequest httpServletRequest) {
+                       @RequestParam("picture") MultipartFile multipartFile, HttpServletRequest httpServletRequest, Model model) {
 
         String fileName = Util.validateAndSavePicture(multipartFile, httpServletRequest);
         if (fileName != null) {
@@ -54,6 +54,7 @@ public class MovieController {
 
         if (bindingResult.hasErrors()) {
             Util.printError(bindingResult.getAllErrors());
+            model.addAttribute("listGenres", _iMovieService.getGenres());
             return "movies/form";
         } else {
             _iMovieService.save(movie);

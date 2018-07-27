@@ -16,10 +16,20 @@
     <title>Contact</title>
     <link href="${urlPublic}/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="${urlPublic}/bootstrap/css/theme.css" rel="stylesheet">
-
+    <script>
+        function validateInputOff() {
+            var inputFields = document.getElementsByTagName("input");
+            for (var i = 0; i < inputFields.length; i++) {
+                var field = inputFields[i];
+                if (field.type === "text") {
+                    field.autocomplete = "off";
+                }
+            }
+        }
+    </script>
 </head>
 
-<body>
+<body onload="validateInputOff()">
 
 
 <!-- Fixed navbar -->
